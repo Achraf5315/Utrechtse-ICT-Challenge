@@ -26,7 +26,6 @@
             <a href="{{ route('jobs.index') }}" class="text-2xl font-bold tracking-wider flex items-center gap-2">
                 <span class="text-amber-400">●</span> POLITIE VACATURES
             </a>
-            <span class="text-sm bg-[#003366] px-3 py-1 rounded text-slate-300">Waakzaam en dienstbaar</span>
         </div>
     </header>
 

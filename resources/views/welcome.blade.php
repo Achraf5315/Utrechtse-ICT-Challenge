@@ -1,5 +1,5 @@
 <x-layout>
-    
+
     <div class="mb-10 text-center max-w-2xl mx-auto">
         <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight mb-3">Vind jouw uitdaging bij de politie</h1>
         <p class="text-lg text-slate-600">Draag bij aan een veiligere samenleving. Bekijk onze actuele IV, ICT en
@@ -34,7 +34,7 @@
                         <a href="{{ route('jobs.show', $job->id) }}">{{ ucfirst($job->title) }}</a>
                     </h2>
                     <p class="text-sm text-slate-500 flex items-center gap-1 mb-4">
-                         {{ $job->location }}
+                        {{ $job->location }}
                     </p>
                 </div>
 
@@ -51,20 +51,20 @@
             </div>
         @endforelse
     </div>
-{{-- QUIZ PROMO BLOK --}}
-<div class="mt-10 bg-[#002547] text-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto">
-    <h2 class="text-2xl font-bold mb-3">Vacature Quiz</h2>
-    <p class="text-slate-200 mb-6">
-        Weet je nog niet precies welke richting je op wilt met je carrière?
-        Doe dan onze korte Vacature Quiz en ontdek welke functies het beste passen bij jouw interesses,
-        talenten en toekomstplannen. Snel, simpel en helemaal op jou afgestemd.
-    </p>
+    {{-- QUIZ PROMO BLOK --}}
+    <div class="mt-10 bg-[#002547] text-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mb-3">Vacature Quiz</h2>
+        <p class="text-slate-200 mb-6">
+            Weet je nog niet precies welke richting je op wilt met je carrière?
+            Doe dan onze korte Vacature Quiz en ontdek welke functies het beste passen bij jouw interesses,
+            talenten en toekomstplannen. Snel, simpel en helemaal op jou afgestemd.
+        </p>
 
-    <a href="{{ route('quiz') }}"
-       class="inline-block bg-white text-[#002547] font-semibold px-6 py-3 rounded-lg shadow hover:bg-slate-100 transition">
-        Doe de Vacature Quiz
-    </a>
-</div>
+        <a href="{{ route('quiz') }}"
+            class="inline-block bg-white text-[#002547] font-semibold px-6 py-3 rounded-lg shadow hover:bg-slate-100 transition">
+            Doe de Vacature Quiz
+        </a>
+    </div>
 
     <div class="mt-8">
         {{ $jobs->appends(request()->input())->links() }}
