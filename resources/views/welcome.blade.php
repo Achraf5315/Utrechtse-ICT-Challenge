@@ -1,4 +1,5 @@
 <x-layout>
+    
     <div class="mb-10 text-center max-w-2xl mx-auto">
         <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight mb-3">Vind jouw uitdaging bij de politie</h1>
         <p class="text-lg text-slate-600">Draag bij aan een veiligere samenleving. Bekijk onze actuele IV, ICT en
