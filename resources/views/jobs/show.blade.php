@@ -10,7 +10,7 @@
                 <h1 class="text-3xl font-extrabold text-slate-900 mb-2">{{ ucfirst($job->title) }}</h1>
                 <p class="text-slate-500 mb-6 flex gap-4">
                     <span>{{ $job->location }}</span>
-                    <span>• Status: {{ ucfirst($job->status) }}</span>
+                    <span>Status: {{ ucfirst($job->status) }}</span>
                 </p>
 
                 <h3 class="text-xl font-bold text-slate-800 mb-3">Functieomschrijving</h3>
