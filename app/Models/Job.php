@@ -11,6 +11,8 @@ class Job extends Model
         'description',
         'location',
         'salary',
+        'field',
+        'level',
         'status',
         'is_active',
         'created_at',
