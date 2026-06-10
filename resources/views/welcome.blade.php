@@ -60,7 +60,7 @@
         talenten en toekomstplannen. Snel, simpel en helemaal op jou afgestemd.
     </p>
 
-    <a href="{{ route('quiz.index') }}"
+    <a href="{{ route('quiz') }}"
        class="inline-block bg-white text-[#002547] font-semibold px-6 py-3 rounded-lg shadow hover:bg-slate-100 transition">
         Doe de Vacature Quiz
     </a>
