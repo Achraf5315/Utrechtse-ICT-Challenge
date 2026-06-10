@@ -33,7 +33,7 @@
                         <a href="{{ route('jobs.show', $job->id) }}">{{ ucfirst($job->title) }}</a>
                     </h2>
                     <p class="text-sm text-slate-500 flex items-center gap-1 mb-4">
-                        📍 {{ $job->location }}
+                         {{ $job->location }}
                     </p>
                 </div>
 
