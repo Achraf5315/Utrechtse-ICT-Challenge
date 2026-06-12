@@ -1,52 +1,128 @@
 <x-layout>
-    <div class="mb-6">
-        <a href="{{ route('jobs.index') }}" class="text-sm font-medium text-[#002547] hover:underline">← Terug naar alle
-            vacatures</a>
-    </div>
+    {{-- Container gecentreerd en breedte beperkt voor betere leesbaarheid --}}
+    <div class="max-w-4xl mx-auto px-4 py-6">
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div class="lg:col-span-2 space-y-8">
-            <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-200">
-                <h1 class="text-3xl font-extrabold text-slate-900 mb-2">{{ ucfirst($job->title) }}</h1>
-                <p class="text-slate-500 mb-6 flex gap-4">
-                    <span>{{ $job->location }}</span>
-                    <span>Status: {{ ucfirst($job->status) }}</span>
-                </p>
-
-                <h3 class="text-xl font-bold text-slate-800 mb-3">Functieomschrijving</h3>
-                <p class="text-slate-600 leading-relaxed mb-6">
-                    {{ $job->detail->description }}
-                </p>
-
-                <hr class="border-slate-200 my-6">
-
-                <h3 class="text-xl font-bold text-slate-800 mb-3">Functie-eisen</h3>
-                <div class="text-slate-600 leading-relaxed whitespace-pre-line">
-                    {!! nl2br(e($job->detail->requirements)) !!}
-                </div>
-            </div>
-
-            <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-200">
-                <h3 class="text-xl font-bold text-slate-800 mb-3">Jouw Verantwoordelijkheden</h3>
-                <div class="text-slate-600 leading-relaxed whitespace-pre-line">
-                    {!! nl2br(e($job->detail->responsibilities)) !!}
-                </div>
-            </div>
+        {{-- Terug-knop --}}
+        <div class="mb-8">
+            <a href="{{ route('jobs.index') }}"
+                class="text-sm font-medium text-[#002547] hover:underline flex items-center gap-1">
+                ← Terug naar alle vacatures
+            </a>
         </div>
 
-        <div class="space-y-6">
-            <div class="bg-[#002547] text-white p-6 rounded-xl shadow-sm flex flex-col justify-between">
+        {{-- HOOFDCONTAINER: Gecentreerd, grotere tekst en nette scheidingslijnen --}}
+        <div
+            class="bg-white rounded-xl shadow-sm border border-slate-200 divide-y divide-slate-200 text-lg text-slate-600 leading-relaxed">
+
+            {{-- HEADER & WAT GA JE DOEN --}}
+            <div class="p-6 md:p-10 space-y-6">
                 <div>
-                    <h3 class="text-xl font-bold mb-4 text-amber-400">Wat bieden wij jou?</h3>
-                    <div class="text-sm text-slate-200 space-y-2 whitespace-pre-line leading-relaxed">
-                        {!! nl2br(e($job->detail->benefits)) !!}
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
+                        {{ ucfirst($job->title) }}
+                    </h1>
+                    <p class="text-slate-500 flex gap-4 text-base font-medium">
+                        <span>📍 {{ $job->location }}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-3">
+                        Wat ga je doen
+                    </h2>
+                    <div class="whitespace-pre-line">
+                        {{ $job->detail->description }}
                     </div>
                 </div>
-                <button
-                    class="mt-8 w-full bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold py-3 px-4 rounded-lg transition shadow text-center">
-                    Direct Solliciteren
-                </button>
             </div>
+
+            {{-- WAAR GA JE WERKEN --}}
+            @if($job->detail?->workplace)
+                <div class="p-6 md:p-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-3">
+                        Waar ga je werken
+                    </h2>
+                    <div class="whitespace-pre-line">
+                        {{ $job->detail->workplace }}
+                    </div>
+                </div>
+            @endif
+
+            {{-- WIE BEN JIJ --}}
+            @if($job->detail?->requirements)
+                <div class="p-6 md:p-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-3">
+                        Wie ben jij
+                    </h2>
+                    <ul class="space-y-4">
+                        @foreach(explode("\n", str_replace("\r", "", $job->detail->requirements)) as $line)
+                            @if(trim($line) !== '')
+                                <li class="flex items-start gap-3">
+                                    <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                    <span>{{ ltrim(trim($line), '- ') }}</span>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            {{-- VERANTWOORDELIJKHEDEN --}}
+            @if($job->detail?->responsibilities)
+                <div class="p-6 md:p-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-3">
+                        Jouw verantwoordelijkheden
+                    </h2>
+                    <ul class="space-y-4">
+                        @foreach(explode("\n", str_replace("\r", "", $job->detail->responsibilities)) as $line)
+                            @if(trim($line) !== '')
+                                <li class="flex items-start gap-3">
+                                    <span class="text-blue-600 font-bold mt-0.5">•</span>
+                                    <span>{{ ltrim(trim($line), '- ') }}</span>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            {{-- BENEFITS --}}
+            @if($job->detail?->benefits)
+                <div class="p-6 md:p-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-3">
+                        Wat bieden wij jou?
+                    </h2>
+                    <ul class="space-y-4">
+                        @foreach(explode("\n", str_replace("\r", "", $job->detail->benefits)) as $line)
+                            @if(trim($line) !== '')
+                                <li class="flex items-start gap-3">
+                                    <span class="text-blue-600 font-bold mt-0.5">•</span>
+                                    <span>{{ ltrim(trim($line), '- ') }}</span>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            {{-- INTERESSE --}}
+            <div
+                class="p-6 md:p-10 bg-slate-50 rounded-b-xl flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div class="max-w-xl">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">
+                        Interesse?
+                    </h2>
+                    <p class="text-base text-slate-600">
+                        Ben jij enthousiast over deze functie? Solliciteer direct en maak het verschil in jouw carrière.
+                    </p>
+                </div>
+                <div class="flex-shrink-0">
+                    <button
+                        class="w-full md:w-auto bg-[#002547] hover:bg-[#003366] text-white font-bold py-3 px-8 rounded-lg transition shadow-sm text-base">
+                        Direct Solliciteren
+                    </button>
+                </div>
+            </div>
+
         </div>
     </div>
 </x-layout>

@@ -142,6 +142,8 @@
                                        class="text-blue-700 font-semibold text-lg hover:underline">
                                         {{ $job->title }}
                                     </a>
+                                    <p>{{ $job->short_description }}</p>
+
                                     <div class="flex flex-wrap gap-3 mt-2 text-sm text-gray-600">
                                         {{-- Location --}}
                                         <span class="flex items-center gap-1">

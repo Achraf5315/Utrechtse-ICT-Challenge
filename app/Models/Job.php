@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Job extends Model
 {
@@ -16,6 +17,14 @@ class Job extends Model
         'province_id',
         'education_level_id',
     ];
+
+    public function getShortDescriptionAttribute()
+    {
+        return Str::limit(
+            $this->detail?->description,
+            200
+        );
+    }
 
     public function detail()
     {
